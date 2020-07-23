@@ -10,7 +10,7 @@ namespace InfoTrack.SEO.Scraper
 
         public PageScraper(IHttpClientFactory httpClientFactory)
         {
-            this.httpClientFactory = httpClientFactory; ;
+            this.httpClientFactory = httpClientFactory;
         }
 
         public async Task<string> GetPageSource(Uri pageUrl)

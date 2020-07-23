@@ -27,7 +27,7 @@ namespace InfoTrack.SEO.Web
             services.AddHttpClient();
             services.AddInfoTrackSEOParser();
             services.AddInfoTrackSEOScraper();
-            services.AddTransient<ISearchResultsAnalyser, GoogleSearchAnalyser>();
+            services.AddTransient<ISearchResultsAnalyzer, GoogleSearchAnalyzer>();
 
             services.Configure<GoogleSearchAnalyzerOptions>(Configuration.GetSection(GoogleSearchAnalyzerOptions.SettingsKey));
         }

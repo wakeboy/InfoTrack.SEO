@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace InfoTrack.SEO.Web.Analyzers
 {
-    public interface ISearchResultsAnalyser
+    public interface ISearchResultsAnalyzer
     {
         Task<SEORankingModel> SearchResultRankings(string searchTerm);
     }

@@ -9,22 +9,23 @@ namespace InfoTrack.SEO.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly ISearchResultsAnalyser searchResultsAnalyser;
+        private readonly ISearchResultsAnalyzer searchResultsAnalyzer;
 
-        public HomeController(ILogger<HomeController> logger, ISearchResultsAnalyser searchResultsAnalyser)
+        public HomeController(ISearchResultsAnalyzer searchResultsAnalyzer)
         {
-            _logger = logger;
-            this.searchResultsAnalyser = searchResultsAnalyser;
+            this.searchResultsAnalyzer = searchResultsAnalyzer;
         }
 
         public async Task<IActionResult> Index([FromQuery(Name = "term")] string term)
         {
-            var model = new SEORankingModel();
-            model.Term = term;
+            var model = new SEORankingModel
+            {
+                Term = term
+            };
+
             if (!string.IsNullOrEmpty(term))
             {
-                model = await searchResultsAnalyser.SearchResultRankings(term);
+                model = await searchResultsAnalyzer.SearchResultRankings(term);
             }
             return View(model);
         }

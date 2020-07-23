@@ -4,7 +4,6 @@ using InfoTrack.SEO.Scraper;
 using InfoTrack.SEO.Web.Configuration;
 using InfoTrack.SEO.Web.Models;
 using Microsoft.Extensions.Options;
-using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace InfoTrack.SEO.Web.Analyzers
 {
-    public class GoogleSearchAnalyser : ISearchResultsAnalyser
+    public class GoogleSearchAnalyzer : ISearchResultsAnalyzer
     {
         private readonly IPageScraper scraper;
         private readonly ISearchResultsPageParser parser;
         private readonly GoogleSearchAnalyzerOptions settings;
 
-        public GoogleSearchAnalyser(IPageScraper scraper, ISearchResultsPageParser parser, IOptions<GoogleSearchAnalyzerOptions> settings)
+        public GoogleSearchAnalyzer(IPageScraper scraper, ISearchResultsPageParser parser, IOptions<GoogleSearchAnalyzerOptions> settings)
         {
             this.scraper = scraper;
             this.parser = parser;
@@ -42,10 +41,9 @@ namespace InfoTrack.SEO.Web.Analyzers
             }
 
             var rankings = results.Select((r, i) => new { r.Uri, Ranking = i+1 })
-                .Where(r => Array.Exists(settings.MatchUris.ToArray(), uri => uri == r.Uri)) 
+                .Where(r => Array.Exists(settings.MatchUris, uri => uri == r.Uri)) 
                 .Select(r => r.Ranking)
                 .ToArray();
-
 
             SEORankingModel response = new SEORankingModel
             {
@@ -58,13 +56,6 @@ namespace InfoTrack.SEO.Web.Analyzers
         private Uri BuildUrl(string searchTerm, int start)
         {
             return new Uri($"{settings.BaseSearchUri}/search?q={searchTerm}&start={start}");
-
-            //if (string.IsNullOrEmpty(nextPageUri))
-            //{
-            //    return new Uri($"{settings.BaseSearchUri}/search?q={searchTerm}");
-            //}
-            //else
-            //    return new Uri($"{settings.BaseSearchUri}/{nextPageUri}");
         }
     }
 }
