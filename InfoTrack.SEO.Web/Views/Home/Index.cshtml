@@ -1,8 +1,22 @@
-﻿@{
+﻿@model SEORankingModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form method="get">
+        <div class="form-group">
+            <label for="term">Search</label>
+            <input type="text" class="form-control" id="term" placeholder="Search" asp-for="@Model.Term">
+            <small id="searchTerm" class="form-text text-muted">Enter serach term to check if InfoTrack appears in the top 100 results.</small>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+</div>
+<div>
+    <h2>Results</h2>
+    <p>
+       @Model.Rankings
+    </p>
 </div>

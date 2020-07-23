@@ -1,5 +1,7 @@
 using InfoTrack.SEO.Parser.DependencyInjection;
 using InfoTrack.SEO.Scraper.DependencyInjection;
+using InfoTrack.SEO.Web.Analyzers;
+using InfoTrack.SEO.Web.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,9 +22,14 @@ namespace InfoTrack.SEO.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
             services.AddControllersWithViews();
+            services.AddHttpClient();
             services.AddInfoTrackSEOParser();
             services.AddInfoTrackSEOScraper();
+            services.AddTransient<ISearchResultsAnalyser, GoogleSearchAnalyser>();
+
+            services.Configure<GoogleSearchAnalyzerOptions>(Configuration.GetSection(GoogleSearchAnalyzerOptions.SettingsKey));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

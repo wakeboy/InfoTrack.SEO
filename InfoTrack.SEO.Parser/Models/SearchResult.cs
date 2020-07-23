@@ -25,8 +25,8 @@ namespace InfoTrack.SEO.Parser.Models
         {
             var removeTags = new Regex("<[^>]*>");
             var uri = removeTags.Replace(Html, string.Empty);
-            var endIndex = uri.IndexOf(' ') > -1 ? Html.IndexOf(' ') : Html.Length;
-            return uri.Substring(0, endIndex);
+            var endIndex = uri.IndexOf(' ') > -1 ? uri.IndexOf(' ') : uri.Length;
+            return uri.Substring(0, endIndex).Trim();
         }
     }
 }

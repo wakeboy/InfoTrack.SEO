@@ -6,7 +6,7 @@ namespace InfoTrack.SEO.Scraper.DependencyInjection
     {
         public static void AddInfoTrackSEOScraper(this IServiceCollection services)
         {
-            services.AddTransient<IPageScraper>();
+            services.AddTransient<IPageScraper, PageScraper>();
         }
     }
 }

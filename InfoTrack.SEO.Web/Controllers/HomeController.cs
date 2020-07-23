@@ -2,26 +2,31 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using InfoTrack.SEO.Web.Models;
+using InfoTrack.SEO.Web.Analyzers;
+using System.Threading.Tasks;
 
 namespace InfoTrack.SEO.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ISearchResultsAnalyser searchResultsAnalyser;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ISearchResultsAnalyser searchResultsAnalyser)
         {
             _logger = logger;
+            this.searchResultsAnalyser = searchResultsAnalyser;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index([FromQuery(Name = "term")] string term)
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            var model = new SEORankingModel();
+            model.Term = term;
+            if (!string.IsNullOrEmpty(term))
+            {
+                model = await searchResultsAnalyser.SearchResultRankings(term);
+            }
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

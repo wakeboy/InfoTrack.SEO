@@ -24,7 +24,6 @@ namespace InfoTrack.SEO.ParserTests
             var result = searchResultsPageParser.Parse("<html></html>");
 
             Assert.AreEqual(5, result.SearchResults.Count);
-            Assert.AreEqual("/search?q=test", result.NextPageUri);
         }
     }
 }

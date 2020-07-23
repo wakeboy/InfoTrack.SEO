@@ -7,7 +7,7 @@ namespace InfoTrack.SEO.Parser.DependencyInjection
     {
         public static void AddInfoTrackSEOParser(this IServiceCollection services)
         {
-            services.AddSingleton<IHtmlHelper>();
+            services.AddTransient<IHtmlHelper, HtmlHelper>();
             services.AddTransient<ISearchResultsPageParser, GoogleSearchResultsParser>();
         }
     }

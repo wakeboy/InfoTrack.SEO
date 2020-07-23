@@ -6,8 +6,7 @@ namespace InfoTrack.SEO.Parser
 {
     public class GoogleSearchResultsParser : ISearchResultsPageParser
     {
-        private const string SEARCH_RESULT_CLASS = "BNeawe UPmit AP7Wnd";
-        private const string NEXT_LINK_CLASS = "nBDE1b G5eFlf";
+        private const string SearchResultClass = "BNeawe UPmit AP7Wnd";
 
         private readonly IHtmlHelper htmlHelper;
 
@@ -18,13 +17,11 @@ namespace InfoTrack.SEO.Parser
 
         public SearchResultsPage Parse(string pageHtml)
         {
-            var searchResults = htmlHelper.FindElementsByCssClass(pageHtml, "div", SEARCH_RESULT_CLASS);
-            var nextLink = htmlHelper.FindElementByCssClass(pageHtml, "a", NEXT_LINK_CLASS);
+            var searchResults = htmlHelper.FindElementsByCssClass(pageHtml, "div", SearchResultClass);
 
             return new SearchResultsPage
             {
-                SearchResults = searchResults.Select(r => new GoogleSearchResult(r)).ToList<SearchResult>(),
-                NextPageUri = htmlHelper.GetHtmlAttributeValue(nextLink, "href")
+                SearchResults = searchResults.Select(r => new GoogleSearchResult(r)).ToList<SearchResult>()
             };
         }
     }
