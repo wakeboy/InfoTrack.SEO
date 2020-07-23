@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using InfoTrack.SEO.Parser.DependencyInjection;
+using InfoTrack.SEO.Scraper.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +21,8 @@ namespace InfoTrack.SEO.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddInfoTrackSEOParser();
+            services.AddInfoTrackSEOScraper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

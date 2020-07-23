@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoTrack.SEO.Scraper", "In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoTrack.SEO.Parser", "InfoTrack.SEO.Parser\InfoTrack.SEO.Parser.csproj", "{958D1973-8EE0-49D6-9DD0-80B3C1D397C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoTrack.SEO.ScraperTests", "InfoTrack.SEO.ScraperTests\InfoTrack.SEO.ScraperTests.csproj", "{0D552CDF-60A0-4A9F-B5D3-23D1D56ADC59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoTrack.SEO.ParserTests", "InfoTrack.SEO.ParserTests\InfoTrack.SEO.ParserTests.csproj", "{AF63EEE5-326F-46B6-84C3-60933AA4D07F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{958D1973-8EE0-49D6-9DD0-80B3C1D397C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{958D1973-8EE0-49D6-9DD0-80B3C1D397C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{958D1973-8EE0-49D6-9DD0-80B3C1D397C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D552CDF-60A0-4A9F-B5D3-23D1D56ADC59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D552CDF-60A0-4A9F-B5D3-23D1D56ADC59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D552CDF-60A0-4A9F-B5D3-23D1D56ADC59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D552CDF-60A0-4A9F-B5D3-23D1D56ADC59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF63EEE5-326F-46B6-84C3-60933AA4D07F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF63EEE5-326F-46B6-84C3-60933AA4D07F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF63EEE5-326F-46B6-84C3-60933AA4D07F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF63EEE5-326F-46B6-84C3-60933AA4D07F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
