@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using InfoTrack.SEO.Web.Models;
 using InfoTrack.SEO.Web.Analyzers;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace InfoTrack.SEO.Web.Controllers
 {
@@ -16,16 +17,17 @@ namespace InfoTrack.SEO.Web.Controllers
             this.searchResultsAnalyzer = searchResultsAnalyzer;
         }
 
-        public async Task<IActionResult> Index([FromQuery(Name = "term")] string term)
+        public async Task<IActionResult> Index([FromQuery(Name = "term")] string term, [FromQuery(Name = "matchUri")] string matchUri)
         {
             var model = new SEORankingModel
             {
-                Term = term
+                Term = term,
+                MatchUri = matchUri
             };
 
             if (!string.IsNullOrEmpty(term))
             {
-                model = await searchResultsAnalyzer.SearchResultRankings(term);
+                model = await searchResultsAnalyzer.SearchResultRankingsAsync(term, matchUri);
             }
             return View(model);
         }

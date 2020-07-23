@@ -5,6 +5,6 @@ namespace InfoTrack.SEO.Scraper
 {
     public interface IPageScraper
     {
-        Task<string> GetPageSource(Uri pageUri);
+        Task<string> GetPageSourceAsync(Uri pageUri);
     }
 }

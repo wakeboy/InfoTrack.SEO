@@ -11,6 +11,10 @@
             <input type="text" class="form-control" id="term" placeholder="Search" asp-for="@Model.Term">
             <small id="searchTerm" class="form-text text-muted">Enter serach term to check if InfoTrack appears in the top 100 results.</small>
         </div>
+        <div class="form-group">
+            <label for="term">Match Url</label>
+            <input type="text" class="form-control" id="term" placeholder="Url to match eg: www.infotrack.com.au" asp-for="@Model.MatchUri">
+        </div>
         <input type="submit" class="btn btn-primary" value="Submit">
     </form>
 </div>

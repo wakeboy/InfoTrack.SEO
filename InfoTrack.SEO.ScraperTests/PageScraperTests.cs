@@ -22,7 +22,7 @@ namespace InfoTrack.SEO.ScraperTests
         [Test]
         public async Task ShouldDownloadSearchResultsAsHtml()
         {
-            var response = await pageScraper.GetPageSource(new Uri($"{testUrl}?q=test"));
+            var response = await pageScraper.GetPageSourceAsync(new Uri($"{testUrl}?q=test"));
 
             Assert.AreEqual(PageSource(), response);
         }

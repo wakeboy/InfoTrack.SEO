@@ -6,6 +6,6 @@ namespace InfoTrack.SEO.Web.Analyzers
 {
     public interface ISearchResultsAnalyzer
     {
-        Task<SEORankingModel> SearchResultRankings(string searchTerm);
+        Task<SEORankingModel> SearchResultRankingsAsync(string searchTerm, string matchUri);
     }
 }

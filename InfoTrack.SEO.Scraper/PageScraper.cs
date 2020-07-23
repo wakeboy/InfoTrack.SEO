@@ -13,7 +13,7 @@ namespace InfoTrack.SEO.Scraper
             this.httpClientFactory = httpClientFactory;
         }
 
-        public async Task<string> GetPageSource(Uri pageUrl)
+        public async Task<string> GetPageSourceAsync(Uri pageUrl)
         {
             var client = httpClientFactory.CreateClient();
             var response = await client.GetAsync(pageUrl);

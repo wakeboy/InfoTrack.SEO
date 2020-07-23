@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace InfoTrack.SEO.Web.Analyzers
@@ -23,17 +24,17 @@ namespace InfoTrack.SEO.Web.Analyzers
             this.parser = parser;
             this.settings = settings.Value;
         }
-        public async Task<SEORankingModel> SearchResultRankings(string searchTerm)
+        public async Task<SEORankingModel> SearchResultRankingsAsync(string searchTerm, string matchUri)
         {
             var start = 0;
             var results = new List<SearchResult>();
             SearchResultsPage searchResultsPage = default;
-            
+            matchUri = RemoveProtocol(matchUri);
 
             while(results.Count < settings.CheckTopResults)
             {
                 var uri = BuildUrl(searchTerm, start);
-                string pageHtml = await this.scraper.GetPageSource(uri);
+                string pageHtml = await this.scraper.GetPageSourceAsync(uri);
                 searchResultsPage = parser.Parse(pageHtml);
 
                 results.AddRange(searchResultsPage.SearchResults);
@@ -41,7 +42,7 @@ namespace InfoTrack.SEO.Web.Analyzers
             }
 
             var rankings = results.Select((r, i) => new { r.Uri, Ranking = i+1 })
-                .Where(r => Array.Exists(settings.MatchUris, uri => uri == r.Uri)) 
+                .Where(r => RemoveProtocol(r.Uri) == matchUri)
                 .Select(r => r.Ranking)
                 .ToArray();
 
@@ -51,6 +52,12 @@ namespace InfoTrack.SEO.Web.Analyzers
             };
 
             return response;
+        }
+
+        private string RemoveProtocol(string uri)
+        {
+            Regex removeProtocol = new Regex(@"^(https)?:\/\/|(http)?:\/\/|(www.)");
+            return removeProtocol.Replace(uri, string.Empty);
         }
 
         private Uri BuildUrl(string searchTerm, int start)

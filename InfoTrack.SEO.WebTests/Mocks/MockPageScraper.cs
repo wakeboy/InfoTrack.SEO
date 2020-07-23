@@ -6,7 +6,7 @@ namespace InfoTrack.SEO.WebTests.Mocks
 {
     public class MockPageScraper : IPageScraper
     {
-        public Task<string> GetPageSource(Uri pageUri)
+        public Task<string> GetPageSourceAsync(Uri pageUri)
         {
             return Task.FromResult(string.Empty);
         }

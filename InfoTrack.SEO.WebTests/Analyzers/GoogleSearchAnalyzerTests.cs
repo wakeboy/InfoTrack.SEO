@@ -30,10 +30,12 @@ namespace InfoTrack.SEO.WebTests.Analyzers
             searchResultsAnalyzer = new GoogleSearchAnalyzer(new MockPageScraper(), new MockGoogleSearchResultsParser(), options);
         }
 
-        [Test]
-        public async Task GoogleSearchAnalyzer_ShouldReturn6Results()
+        [TestCase("test.com")]
+        [TestCase("www.test.com")]
+        [TestCase("http://www.test.com")]
+        public async Task GoogleSearchAnalyzer_ShouldReturn6Results(string matchUri)
         {
-            var result = await searchResultsAnalyzer.SearchResultRankings("test search");
+            var result = await searchResultsAnalyzer.SearchResultRankingsAsync("test search", matchUri);
 
             Assert.AreEqual("1, 3, 5, 6, 8, 10", result.Rankings);
         }
